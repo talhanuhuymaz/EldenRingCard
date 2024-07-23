@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 150px; 
+}
+
+.logo img {
+    height: 50%;
+    object-fit: contain;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; 
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.item {
+    width: 150px; 
+    height: 200px; 
+    border: 2px solid #fff; 
+    padding: 10px; 
+    background-color: #551111; 
+    border-radius: 20px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.item img {
+    max-width: 100%; 
+    max-height: 100%; 
+    border-radius: 5px; 
+    object-fit: cover; /* fit the pictures to the card */
+}
+
+.list .item{
+    transition: .5s;
+    filter: brightness(0);
+}
+.list .item:hover{
+    filter: brightness(1);
+    transform: translateZ(200px);
+}
+.list .item:hover + *{
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(40deg);
+}
+.list .item:hover + * + *{
+    filter: brightness(0.2);
+    transform: translateZ(70px) rotateY(20deg);
+}
+.list .item:hover + * + *+ *{
+    filter: brightness(0.1);
+    transform: translateZ(30px) rotateY(10deg);
+}
+/* To make the same thing for left side use has(+ *)  */
+.list .item:has(+ *:hover){
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+.list .item:has(+ *+ *:hover){
+    filter: brightness(0.2);
+    transform: translateZ(70px) rotateY(-20deg);
+}
+.list .item:has(+ *+ *+ *:hover){
+    filter: brightness(0.1);
+    transform: rotateY(-20deg);
+}
